@@ -9,7 +9,10 @@ contract wallet is Ownable {
  uint public seats = 100;
  
  mapping (address => uint) public usertoTicket;
-   
+
+  event PurchasedTicket(address indexed buyer,uint ticketno, uint amount);
+  event Refund(address indexed user,uint ticketno,uint amount);
+  event withdraw(address indexed , uint amount);
 
     struct Ticket {
        string name;
@@ -26,14 +29,16 @@ contract wallet is Ownable {
         require(msg.value == eth, "you have to pay exact amount of eth");
         require(seats > 0);
         seats -=1;
+        uint TicketNO = 100 - seats;
         
         details.push(Ticket({
             name:_name,
             email: _email,
             phoneNo:_phoneNo,
-            ticketNo:100 - seats
+            ticketNo:TicketNO
             }));
-
+      usertoTicket[msg.sender] = TicketNO;
+      emit PurchasedTicket(msg.sender, TicketNO, eth);
     }
 
   
@@ -46,12 +51,15 @@ contract wallet is Ownable {
 
       (bool sent,) =  payable(msg.sender).call{value: eth}("");
        require(sent,"error:issue with refund");
-
+       
+      emit Refund(msg.sender, TicketNo, eth);
     }
 
-      function withdraw() external onlyOwner {
+      function Withdraw() external onlyOwner {
+         uint amount = address(this).balance;
       (bool sent,) =  payable(owner()).call{value: address(this).balance}("");
       require(sent,"error:fail to send ether");
+      emit withdraw(owner(),msg.value);
    }
 
 } 
