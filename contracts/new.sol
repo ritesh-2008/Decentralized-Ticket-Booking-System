@@ -36,8 +36,7 @@ contract wallet is Ownable {
     }
 
     function withdraw() external onlyOwner {
-      address payable _owner = address(uint160(owner()));
-
-      _owner.transfer(address(this).balance);
+      (bool sent,) =  payable(owner()).call{value: address(this).balance}("");
+      require(sent,"error:fail to send ether");
    }
 } 
