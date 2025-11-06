@@ -7,7 +7,8 @@ contract wallet is Ownable {
  
  uint public eth = 0.001 ether;
  uint public seats = 100;
-
+ 
+ mapping (address => uint) public usertoTicket;
    
 
     struct Ticket {
@@ -35,8 +36,22 @@ contract wallet is Ownable {
 
     }
 
-    function withdraw() external onlyOwner {
+  
+    function refund() external  {
+      uint TicketNo = usertoTicket[msg.sender];
+      require(TicketNo > 0,"you dont own Ticket");
+      
+      usertoTicket[msg.sender] = 0;
+      seats +=1;
+
+      (bool sent,) =  payable(msg.sender).call{value: eth}("");
+       require(sent,"error:issue with refund");
+
+    }
+
+      function withdraw() external onlyOwner {
       (bool sent,) =  payable(owner()).call{value: address(this).balance}("");
       require(sent,"error:fail to send ether");
    }
+
 } 
