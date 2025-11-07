@@ -7,13 +7,13 @@ contract wallet is Ownable {
  
  uint public eth = 0.001 ether;
  uint public seats = 100;
- 
+ uint256 public  eventDate;
  
  mapping (address => uint) public usertoTicket;
 
   event PurchasedTicket(address indexed buyer,uint ticketno, uint amount);
   event Refund(address indexed user,uint ticketno,uint amount);
-  event withdraw(address indexed withdraweth , uint amount);
+  event Withdraw(address indexed withdraweth , uint amount);
 
     struct Ticket {
        string name;
@@ -43,9 +43,14 @@ contract wallet is Ownable {
       emit PurchasedTicket(msg.sender, TicketNO, eth);
     }
 
-  
+    // refund users eth
+    constructor(){
+      eventDate = block.timestamp + 7 days;
+    }
     function refund() external  {
       uint TicketNo = usertoTicket[msg.sender];
+      
+      require(block.timestamp < eventDate, "refund period is over");
       require(TicketNo > 0,"you dont own Ticket");
       
       usertoTicket[msg.sender] = 0;
@@ -56,12 +61,13 @@ contract wallet is Ownable {
        
       emit Refund(msg.sender, TicketNo, eth);
     }
+
       //  withdraw the eth
-      function Withdraw() external onlyOwner {
+      function withdraw() external onlyOwner {
       uint amount = address(this).balance;
-      (bool sent,) =  payable(owner()).call{value: address(this).balance}("");
-      require(sent,"error:fail to send ether");
-      emit withdraw(owner(),amount);
+      (bool sent,) =  payable(owner()).call{value: amount}("");
+      require(sent,"error:fail to withdraw ether");
+      emit Withdraw(owner(),amount);
    }
 
 } 
