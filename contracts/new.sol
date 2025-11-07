@@ -8,6 +8,7 @@ contract wallet is Ownable {
  uint public eth = 0.001 ether;
  uint public seats = 100;
  
+ 
  mapping (address => uint) public usertoTicket;
 
   event PurchasedTicket(address indexed buyer,uint ticketno, uint amount);
@@ -56,10 +57,10 @@ contract wallet is Ownable {
     }
 
       function Withdraw() external onlyOwner {
-         uint amount = address(this).balance;
+      uint amount = address(this).balance;
       (bool sent,) =  payable(owner()).call{value: address(this).balance}("");
       require(sent,"error:fail to send ether");
-      emit withdraw(owner(),msg.value);
+      emit withdraw(owner(),amount);
    }
 
 } 

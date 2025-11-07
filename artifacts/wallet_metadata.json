@@ -6,6 +6,101 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "ticketno",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "PurchasedTicket",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "ticketno",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Refund",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "Withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -53,6 +148,32 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "isOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -84,7 +205,46 @@
 			},
 			{
 				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "seats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "usertoTicket",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -98,12 +258,36 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"isOwner()": {
+					"returns": {
+						"_0": "true if `msg.sender` is the owner of the contract."
+					}
+				},
+				"owner()": {
+					"returns": {
+						"_0": "the address of the owner."
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Allows the current owner to relinquish control of the contract."
+				},
+				"transferOwnership(address)": {
+					"details": "Allows the current owner to transfer control of the contract to a newOwner.",
+					"params": {
+						"newOwner": "The address to transfer ownership to."
+					}
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"renounceOwnership()": {
+					"notice": "Renouncing to ownership will leave the contract without an owner. It will not be possible to call the functions with the `onlyOwner` modifier anymore."
+				}
+			},
 			"version": 1
 		}
 	},
@@ -124,11 +308,19 @@
 	},
 	"sources": {
 		"contracts/new.sol": {
-			"keccak256": "0x5ba098750209a6c6698f208b1b00cec0b7d6c3b00b1ce4bfd78d7ed3a513c958",
+			"keccak256": "0x69ece6b1d6d029cad7bcd0c6e52556704cf1186c987cadcf84da2cb035a5e319",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5f30acdb103f9cfa5a816978514d50f7da1cf18b643897d897f23b71a1ac93ea",
-				"dweb:/ipfs/QmeSi2dJdXC1dEuyWSvVUaY9tvaK1s6NQH5ru7LJxNujvh"
+				"bzz-raw://ec17d6f2e18f8e38af3a70a84ee59e6fac876b2802157e312faecd50e99c3d31",
+				"dweb:/ipfs/QmYpQ4TiphK7UUnwqRcMNgQmQ8xKsp1rzcXTv9Mv3Pv7tV"
+			]
+		},
+		"contracts/ownable.sol": {
+			"keccak256": "0xb37f25ea0ee2b1b629172f61ec3103135a74b1d77b380ccff0d47c7730c0ffea",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://57113c688d68079ba5e680559e3fb1b4800ec98700086e14dbdfc94ea781276e",
+				"dweb:/ipfs/QmbqRKVMxphunuxRF8uMHyCArrQ9QwUqeiQcHfpTrJSt6Y"
 			]
 		}
 	},
