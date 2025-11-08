@@ -78,7 +78,7 @@ contract wallet is Ownable {
         require(usertoVipTicket[msg.sender] == 0,"you alredy own ticket");
 
       vipseats -=1;
-        uint VipTicketNo = vipseats - 50;
+        uint VipTicketNo = 50 - vipseats ;
 
         vipdetails.push(Ticket({
           name:_name,
