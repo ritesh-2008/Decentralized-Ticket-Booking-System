@@ -87,7 +87,7 @@ contract wallet is Ownable {
           ticketNo:VipTicketNo
         }));
         usertoVipTicket[msg.sender] = VipTicketNo;
-        emit PurchasedTicket(msg.sender,VipTicketNo , eth);
+        emit PurchasedTicket(msg.sender,VipTicketNo , ethforvip);
    }
   //  refund feature for vip
     function refundforvip() external {
