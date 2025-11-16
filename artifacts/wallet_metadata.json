@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -90,14 +95,30 @@
 						"type": "uint256"
 					}
 				],
-				"name": "withdraw",
+				"name": "Withdraw",
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "Withdraw",
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_phoneNo",
+						"type": "uint256"
+					}
+				],
+				"name": "Buyvipseats",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -137,6 +158,32 @@
 			{
 				"inputs": [],
 				"name": "eth",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ethforvip",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "eventDate",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -205,6 +252,13 @@
 			},
 			{
 				"inputs": [],
+				"name": "refundforvip",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -253,6 +307,79 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "usertoVipTicket",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "vipdetails",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "phoneNo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketNo",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vipseats",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -308,11 +435,11 @@
 	},
 	"sources": {
 		"contracts/new.sol": {
-			"keccak256": "0x26e91a99701b3609cc67d6c5821789bb96279d16e198bdd1a7a0f1dbe8036ab7",
+			"keccak256": "0xc898185b8bf935e2f451aea6c61316bc3f09e7f1d1850b358267e9b243fcf2a9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://52c56ee1919c925d5ad605c6d7232e4f45581cf9b8444f8ac139df4da384107f",
-				"dweb:/ipfs/QmUQLB2Jp4sozb8wExDUcGiyHkgkoAzqRsW78f4ud1XH8N"
+				"bzz-raw://b489c74224ce4691839b5c6a7408a437aa380686dbf6e63c0f69dfcbdd637ab6",
+				"dweb:/ipfs/QmY7DbC4mntGq6rAgZ2sku3Ts673dCTmi2UpPnD44mbymG"
 			]
 		},
 		"contracts/ownable.sol": {
